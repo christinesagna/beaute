@@ -213,7 +213,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧑‍💼 Créer un Employé</h1>
+            <h1> Créer un Employé</h1>
             
             <p>Ajouter un nouveau membre à votre équipe</p>
         </div>
