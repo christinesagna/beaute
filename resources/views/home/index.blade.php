@@ -346,7 +346,8 @@
                         </div>
                     </div>
                     
-                   
+            <div>
+    
                     
                     <div class="md:col-span-2 text-center">
                         <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-12 py-4 rounded-full font-bold text-lg transition duration-300 hover-lift">

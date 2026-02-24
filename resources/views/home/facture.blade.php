@@ -53,7 +53,6 @@
         </div>
     </div>
 
-   
     <div class="container mx-auto px-6 py-12">
         <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
            
@@ -76,7 +75,6 @@
                 </div>
             </div>
 
-           
             <div class="p-8">
                 <div class="grid md:grid-cols-2 gap-8 mb-8">
                     <div>
@@ -101,7 +99,6 @@
                     </div>
                 </div>
 
-               
                 <div class="mb-8">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b-2 border-purple-200 pb-2">
                         <i class="fas fa-spa text-purple-600 mr-2"></i>Détails du Service
@@ -114,7 +111,7 @@
                                     <th class="border border-gray-200 px-4 py-3 text-left">Description du Service</th>
                                     <th class="border border-gray-200 px-4 py-3 text-center">Quantité</th>
                                     <th class="border border-gray-200 px-4 py-3 text-right">Prix Unitaire</th>
-                                    <th class="border border-gray-200 px-4 py-3 text-right">Total HT</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-right">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -164,37 +161,48 @@
                         <div class="bg-gray-50 p-6 rounded-lg">
                             <div class="space-y-3">
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600">Sous-total HT:</span>
+                                    <span class="text-gray-600">Total:</span>
                                     <span class="font-semibold">{{ number_format($montant_ht, 0, ',', ' ') }} FCFA</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">TVA (18%):</span>
-                                    <span class="font-semibold">{{ number_format($montant_tva, 0, ',', ' ') }} FCFA</span>
-                                </div>
-                                <div class="border-t-2 border-gray-300 pt-3">
-                                    <div class="flex justify-between text-lg">
-                                        <span class="font-bold text-gray-800">Total TTC:</span>
-                                        <span class="font-bold text-purple-600">{{ number_format($montant_ttc, 0, ',', ' ') }} FCFA</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-               
+                
                 <div class="mt-8 p-6 bg-purple-50 rounded-lg">
-                    <h4 class="font-semibold text-purple-800 mb-3">
-                        <i class="fas fa-credit-card mr-2"></i>Informations de Paiement
-                    </h4>
-                    <div class="text-sm text-purple-700 space-y-1">
-                        <p><strong>Modes de paiement acceptés:</strong> Espèces, Carte bancaire, Virement</p>
-                        <p><strong>Paiement requis:</strong> Le jour du rendez-vous</p>
-                        <p><strong>Politique d'annulation:</strong> Annulation gratuite 24h avant le rendez-vous</p>
-                    </div>
-                </div>
+    <h4 class="font-semibold text-purple-800 mb-3">
+        <i class="fas fa-credit-card mr-2"></i>Mode de Paiement
+    </h4>
 
-               
+    <form action="{{ url('paiement') }}" method="POST" class="space-y-4">
+        @csrf
+        <input type="hidden" name="booking_id" value="{{ $booking->id }}">
+        <div class="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0">
+            <label class="flex items-center space-x-2">
+                <input type="radio" name="paiement" value="presentiel" class="form-radio text-purple-600" required>
+                <span>Payer le jour J en présentiel</span>
+            </label>
+            <label class="flex items-center space-x-2">
+                <input type="radio" name="paiement" value="wave" class="form-radio text-purple-600">
+                <span>Paiement en ligne Wave</span>
+            </label>
+            <label class="flex items-center space-x-2">
+                <input type="radio" name="paiement" value="orange_money" class="form-radio text-purple-600">
+                <span>Paiement en ligne Orange Money</span>
+            </label>
+        </div>
+
+        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition duration-300 hover-lift">
+            Confirmer le Paiement
+        </button>
+    </form>
+
+    <p class="text-sm text-purple-700 mt-3">
+        Vous recevrez un email de confirmation ou de refus selon la disponibilité de votre réservation. Pour les paiements en ligne, un lien vous sera envoyé après validation.
+    </p>
+</div>
+
                 <div class="mt-8 text-center p-6 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg">
                     <h4 class="font-playfair text-2xl font-bold text-purple-800 mb-2">
                         <i class="fas fa-heart text-purple-600 mr-2"></i>Merci pour votre confiance !
@@ -209,7 +217,6 @@
             </div>
         </div>
 
-       
         <div class="max-w-4xl mx-auto mt-8 flex justify-center space-x-4 no-print">
             <button onclick="window.print()" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition duration-300">
                 <i class="fas fa-print mr-2"></i>Imprimer la Facture
@@ -219,7 +226,5 @@
             </a>
         </div>
     </div>
-
-   
 </body>
 </html>

@@ -65,15 +65,11 @@ class HomeController extends Controller
             'spa' => 120000
         ];
         
-        //  le prix du service sélectionné
-        $prix = $prix_services[$booking->service] ?? 0;
-        
-       
-        $taux_tva = 0.18;
-        $montant_ht = $prix;
-        $montant_tva = $montant_ht * $taux_tva;
-        $montant_ttc = $montant_ht + $montant_tva;
-        
-        return view('home.facture', compact('booking', 'montant_ht', 'montant_tva', 'montant_ttc'));
-    }
+        // Prix du service sélectionné
+    $montant_ht = $prix_services[$booking->service] ?? 0;
+
+    // On ne calcule plus la TVA ni le TTC
+    return view('home.facture', compact('booking', 'montant_ht'));
+}
+
 }
