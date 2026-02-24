@@ -2,14 +2,11 @@
     <x-application-logo class="block h-12 w-auto" />
 
     <h1 class="mt-8 text-2xl font-medium text-gray-900">
-        Welcome to your Jetstream application!
+        Bienvenue sur votre application Jetstream !
     </h1>
 
     <p class="mt-6 text-gray-500 leading-relaxed">
-        Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-        to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-        you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-        ecosystem to be a breath of fresh air. We hope you love it.
+        Laravel Jetstream fournit un point de départ élégant et robuste pour votre prochaine application Laravel. Laravel est conçu pour vous aider à construire votre application en utilisant un environnement de développement simple, puissant et agréable. Nous croyons que vous devriez prendre plaisir à exprimer votre créativité à travers la programmation, c’est pourquoi nous avons soigneusement conçu l’écosystème Laravel pour qu’il soit un véritable souffle d’air frais. Nous espérons que vous l’apprécierez.
     </p>
 </div>
 
@@ -25,12 +22,12 @@
         </div>
 
         <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
+            Laravel possède une documentation exceptionnelle couvrant tous les aspects du framework. Que vous soyez débutant ou expérimenté, nous vous recommandons de lire la documentation du début à la fin.
         </p>
 
         <p class="mt-4 text-sm">
             <a href="https://laravel.com/docs" class="inline-flex items-center font-semibold text-indigo-700">
-                Explore the documentation
+                Explorer la documentation
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 size-5 fill-indigo-500">
                     <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
@@ -50,12 +47,12 @@
         </div>
 
         <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
+            Laracasts propose des milliers de tutoriels vidéo sur Laravel, PHP et JavaScript. Découvrez-les, testez par vous-même et améliorez considérablement vos compétences en développement.
         </p>
 
         <p class="mt-4 text-sm">
             <a href="https://laracasts.com" class="inline-flex items-center font-semibold text-indigo-700">
-                Start watching Laracasts
+                Commencer Laracasts
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 size-5 fill-indigo-500">
                     <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
@@ -75,7 +72,7 @@
         </div>
 
         <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Laravel Jetstream is built with Tailwind, an amazing utility first CSS framework that doesn't get in your way. You'll be amazed how easily you can build and maintain fresh, modern designs with this wonderful framework at your fingertips.
+            Laravel Jetstream est construit avec Tailwind, un incroyable framework CSS utilitaire qui ne vous gêne pas. Vous serez étonné de voir à quel point il est facile de créer et maintenir des designs modernes et frais grâce à ce merveilleux framework.
         </p>
     </div>
 
@@ -85,12 +82,12 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
             </svg>
             <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                Authentication
+                Authentification
             </h2>
         </div>
 
         <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started with what matters most: building your application.
+            Les vues d’authentification et d’enregistrement sont incluses avec Laravel Jetstream, ainsi que la vérification par e-mail des utilisateurs et la réinitialisation des mots de passe oubliés. Vous êtes donc libre de commencer avec ce qui compte le plus : construire votre application.
         </p>
     </div>
 </div>

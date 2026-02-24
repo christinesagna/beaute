@@ -8,6 +8,7 @@
     <meta name="keywords" content="spa, bien-être, réservation, massage, soins">
     <meta name="author" content="Sagna">
     
+    
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -116,18 +117,27 @@
                  @if (Route::has('login'))
                
                     @auth
-                        <x-app-layout>
-    
-                         </x-app-layout>
+                        <div class="flex items-center space-x-4">
+        <span class="font-semibold text-gray-700">
+            {{ Auth::user()->name }}
+        </span>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-danger">
+                Déconnexion
+            </button>
+        </form>
+    </div>
 
                     @else
                         <li class="nav-item" style="padding-right: 10px;">
-                     <a class="btn btn-success" href="{{ url('login') }}">Login</a>
+                     <a class="btn btn-success" href="{{ url('login') }}">Connexion</a>
                   </li>
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                             <a class="btn btn-primary" href="{{ url('register') }}">Register</a>
+                             <a class="btn btn-primary" href="{{ url('register') }}">Inscription</a>
                             </li>
                         @endif
                     @endauth
@@ -181,169 +191,56 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="Soins Capillaires" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 price-badge px-4 py-2 rounded-full font-bold">
-                            90,000 FCFA
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-3">Soins Capillaires </h3>
-                        <p class="text-gray-600 mb-4">
-                            Nos experts vous proposent des coupes, colorations et soins adaptés pour sublimer votre beauté naturelle.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <i class="fas fa-wifi mr-2 text-red-500"></i>
-                                <span>WiFi Gratuit: Non</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-star mr-2 text-yellow-500"></i>
-                                <span>Type: Régulier</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    @forelse($services as $service)
+        <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg">
+            <div class="relative h-64 overflow-hidden">
+                @php
+                    $img = $service->image
+                        ? asset('salon/' . $service->image)   // car l’upload admin fait move('salon', ...)
+                        : 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=80';
 
-                
-                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="Soins du Visage" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 price-badge px-4 py-2 rounded-full font-bold">
-                            70,000 FCFA
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-3">Soins du Visage </h3>
-                        <p class="text-gray-600 mb-4">
-                            Offrez à votre peau un moment de détente avec nos soins personnalisés qui apaisent et revitalisent.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <i class="fas fa-wifi mr-2 text-red-500"></i>
-                                <span>WiFi Gratuit: Non</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-star mr-2 text-yellow-500"></i>
-                                <span>Type: Régulier</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    $wifiOui = in_array(strtolower((string)$service->wifi), ['yes','oui','1','true']);
+                    $prix = is_numeric($service->prix) ? number_format((int)$service->prix, 0, ',', ' ') : $service->prix;
+                @endphp
 
-               
-                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="Massages" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 price-badge px-4 py-2 rounded-full font-bold">
-                            110,000 FCFA
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-3">Massages </h3>
-                        <p class="text-gray-600 mb-4">
-                            Découvrez nos massages relaxants pour éliminer le stress et retrouver une sensation de bien-être profond.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <i class="fas fa-wifi mr-2 text-green-500"></i>
-                                <span>WiFi Gratuit: Oui</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-star mr-2 text-blue-500"></i>
-                                <span>Type: Deluxe</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <img src="{{ $img }}"
+                     alt="{{ $service->nom_service }}"
+                     class="w-full h-full object-cover">
 
-               
-                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1616391182219-e080b4d1043a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="Épilation" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 price-badge px-4 py-2 rounded-full font-bold">
-                            100,000 FCFA
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-3">Épilation </h3>
-                        <p class="text-gray-600 mb-4">
-                            Nos méthodes d'épilation douces garantissent une peau lisse et soyeuse avec un minimum d'inconfort.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <i class="fas fa-wifi mr-2 text-green-500"></i>
-                                <span>WiFi Gratuit: Oui</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-crown mr-2 text-purple-500"></i>
-                                <span>Type: Premium</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="absolute top-4 right-4 price-badge px-4 py-2 rounded-full font-bold">
+                    {{ $prix }} FCFA
                 </div>
+            </div>
 
-                
-                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="Beauté Mains & Pieds" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 price-badge px-4 py-2 rounded-full font-bold">
-                            95,000 FCFA
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-3">Beauté Mains & Pieds</h3>
-                        <p class="text-gray-600 mb-4">
-                            Manucures et pédicures de luxe avec soin exfoliant, hydratation profonde et mise en beauté tendance.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <i class="fas fa-wifi mr-2 text-green-500"></i>
-                                <span>WiFi Gratuit: Oui</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-crown mr-2 text-purple-500"></i>
-                                <span>Type: Premium</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="p-6">
+                <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-3">
+                    {{ $service->nom_service }}
+                </h3>
 
-                
-                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://aphroditespa.fr/wp-content/uploads/2025/02/aphrodite-spa-bien-etre-soins-massage-espace-detente-sauna-douche-experience.png" 
-                             alt="Spa & Bien-être" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 price-badge px-4 py-2 rounded-full font-bold">
-                            120,000 FCFA
-                        </div>
+                <p class="text-gray-600 mb-4">
+                    {{ $service->description }}
+                </p>
+
+                <div class="space-y-2 text-sm text-gray-500">
+                    <div class="flex items-center">
+                        <i class="fas fa-wifi mr-2 {{ $wifiOui ? 'text-green-500' : 'text-red-500' }}"></i>
+                        <span>WiFi Gratuit: {{ $wifiOui ? 'Oui' : 'Non' }}</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-3">Spa & Bien-être </h3>
-                        <p class="text-gray-600 mb-4">
-                            Espace spa complet avec hammam, sauna et bain à remous pour une expérience multi-sensorielle unique.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <i class="fas fa-wifi mr-2 text-green-500"></i>
-                                <span>WiFi Gratuit: Oui</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-star mr-2 text-blue-500"></i>
-                                <span>Type: Deluxe</span>
-                            </div>
-                        </div>
+
+                    <div class="flex items-center">
+                        <i class="fas {{ strtolower((string)$service->type_service) === 'premium' ? 'fa-crown text-purple-500' : 'fa-star text-blue-500' }} mr-2"></i>
+                        <span>Type: {{ $service->type_service ?? '—' }}</span>
                     </div>
                 </div>
             </div>
         </div>
+    @empty
+        <div class="col-span-full text-center text-gray-700">
+            Aucun service n’a encore été ajouté par l’admin.
+        </div>
+    @endforelse
+</div>
+</div>
     </section>
 
   

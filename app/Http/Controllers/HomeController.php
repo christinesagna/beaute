@@ -8,6 +8,11 @@ use App\Models\Booking;
 
 class HomeController extends Controller
 {
+    public function index()
+{
+    $services = Salon::latest()->get();
+    return view('home.index', compact('services'));
+}
     //public function voir_détails($id)
     //{
        // $salon = Salon::find($id);
